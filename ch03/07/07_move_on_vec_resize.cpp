@@ -1,5 +1,5 @@
-
 #include <iostream>
+#include <print>
 #include <string>
 #include <vector>
 
@@ -37,8 +37,12 @@ main()
 {
     std::vector<Product> prods;
     prods.emplace_back(101, "car");
+    std::println();
     prods.emplace_back(202, "box");
+    std::println();
     prods.emplace_back(303, "toy");
+    std::println();
     prods.emplace_back(404, "mug");
+    std::println();
     prods.emplace_back(505, "pencil");
 }

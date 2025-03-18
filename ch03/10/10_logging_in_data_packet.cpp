@@ -31,13 +31,11 @@ class DataPacket
     }
 
     DataPacket(DataPacket &&other)
-        : data_{std::move(other.data_)} // move string member...
-          ,
-          checkSum_{other.checkSum_}    // no need to move built-in types...
-          ,
+        : data_{std::move(other.data_)}, // move string member...
+          checkSum_{other.checkSum_},    // no need to move built-in types...
           serverId_{other.serverId_}
     {
-        other.checkSum_ = 0;            // leave this in a proper state
+        other.checkSum_ = 0;             // leave this in a proper state
         std::cout << "Move ctor for \"" << data_ << "\"\n";
     }
 

@@ -1,5 +1,5 @@
-
 #include <iostream>
+#include <print>
 #include <string>
 
 class Product
@@ -44,8 +44,12 @@ int
 main()
 {
     Product base{42, "base"};
+    std::println();
     Product first{base};    // copy ctor called!
+    std::println();
     Product second = first; // copy ctor called!
+    std::println();
     Product third{100, "third"};
+    std::println();
     third = second;         // assignment operator called!
 }
