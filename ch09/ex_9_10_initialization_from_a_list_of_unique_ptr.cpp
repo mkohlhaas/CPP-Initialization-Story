@@ -1,9 +1,3 @@
-// ex 9 10 initialization from a list of unique_ptr.cpp
-// example for "C++ Initialization Story"
-// https://leanpub.com/cppinitbook
-// by Bartlomiej Filipek
-// 2022
-// MIT License
 
 #include <iostream>
 #include <memory>

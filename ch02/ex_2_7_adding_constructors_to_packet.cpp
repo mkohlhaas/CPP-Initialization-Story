@@ -1,9 +1,3 @@
-// ex 2 7 adding constructors to packet.cpp
-// example for "C++ Initialization Story"
-// https://leanpub.com/cppinitbook
-// by Bartlomiej Filipek
-// 2022
-// MIT License
 
 #include <iostream>
 #include <numeric>

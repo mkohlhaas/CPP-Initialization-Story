@@ -1,9 +1,3 @@
-// ex 5 4 virtual destructor.cpp
-// example for "C++ Initialization Story"
-// https://leanpub.com/cppinitbook
-// by Bartlomiej Filipek
-// 2022
-// MIT License
 
 #include <iostream>
 #include <memory>

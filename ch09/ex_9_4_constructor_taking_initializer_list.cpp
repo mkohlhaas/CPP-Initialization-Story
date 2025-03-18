@@ -1,9 +1,3 @@
-// ex 9 4 constructor taking initializer_list.cpp
-// example for "C++ Initialization Story"
-// https://leanpub.com/cppinitbook
-// by Bartlomiej Filipek
-// 2022
-// MIT License
 
 #include <initializer_list>
 #include <iostream>

@@ -1,9 +1,3 @@
-// ex 1 4 aggregates car info.cpp
-// example for "C++ Initialization Story"
-// https://leanpub.com/cppinitbook
-// by Bartlomiej Filipek
-// 2022
-// MIT License
 
 #include <iostream>
 #include <string>

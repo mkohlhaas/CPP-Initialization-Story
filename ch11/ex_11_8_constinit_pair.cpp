@@ -1,9 +1,3 @@
-// ex 11 8 constinit pair.cpp
-// example for "C++ Initialization Story"
-// https://leanpub.com/cppinitbook
-// by Bartlomiej Filipek
-// 2022
-// MIT License
 
 #include <iostream>
 #include <utility>

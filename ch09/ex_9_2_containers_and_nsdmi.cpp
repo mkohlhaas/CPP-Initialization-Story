@@ -1,9 +1,3 @@
-// ex 9 2 containers and nsdmi.cpp
-// example for "C++ Initialization Story"
-// https://leanpub.com/cppinitbook
-// by Bartlomiej Filipek
-// 2022
-// MIT License
 
 #include <array>
 #include <iostream>

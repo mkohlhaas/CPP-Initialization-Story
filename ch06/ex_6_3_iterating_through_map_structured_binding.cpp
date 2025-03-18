@@ -1,9 +1,3 @@
-// ex 6 3 iterating through map structured binding.cpp
-// example for "C++ Initialization Story"
-// https://leanpub.com/cppinitbook
-// by Bartlomiej Filipek
-// 2022
-// MIT License
 
 #include <iostream>
 #include <map>

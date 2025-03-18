@@ -1,9 +1,3 @@
-// ex 13 4 crtp instance counter.cpp
-// example for "C++ Initialization Story"
-// https://leanpub.com/cppinitbook
-// by Bartlomiej Filipek
-// 2022
-// MIT License
 
 #include <iostream>
 

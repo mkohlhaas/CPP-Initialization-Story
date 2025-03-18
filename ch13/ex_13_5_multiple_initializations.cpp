@@ -1,9 +1,3 @@
-// ex 13 5 multiple initializations.cpp
-// example for "C++ Initialization Story"
-// https://leanpub.com/cppinitbook
-// by Bartlomiej Filipek
-// 2022
-// MIT License
 
 #include <array>
 #include <iostream>

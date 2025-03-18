@@ -1,9 +1,3 @@
-// example for "C++ Initialization Story"
-// https://leanpub.com/cppinitbook
-// by Bartlomiej Filipek
-// 2023
-// MIT License
-
 // run at https://godbolt.org/z/revGqKMvo
 
 #include <gtest/gtest.h>

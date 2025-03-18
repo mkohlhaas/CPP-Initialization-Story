@@ -1,9 +1,3 @@
-// ex 2 1 simple data packet class.cpp
-// example for "C++ Initialization Story"
-// https://leanpub.com/cppinitbook
-// by Bartlomiej Filipek
-// 2022
-// MIT License
 
 #include <iostream>
 #include <numeric>

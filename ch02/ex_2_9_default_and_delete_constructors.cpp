@@ -1,9 +1,3 @@
-// ex 2 9 default and delete constructors.cpp
-// example for "C++ Initialization Story"
-// https://leanpub.com/cppinitbook
-// by Bartlomiej Filipek
-// 2022
-// MIT License
 
 struct Value
 {
