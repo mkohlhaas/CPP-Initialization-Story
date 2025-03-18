@@ -1,6 +1,6 @@
 // run at https://wandbox.org/permlink/GuGzTWKF8irN2YLz
 
-#include "countedType.h"
+#include "3-counted_type.h"
 #include <iostream>
 
 struct Tests
