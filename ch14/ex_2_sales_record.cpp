@@ -9,36 +9,43 @@
 #include <gtest/gtest.h>
 
 constexpr unsigned int DEFAULT_CATEGORY = 4;
-constexpr unsigned int DEFAULT_FLAGS = 0x0a;
+constexpr unsigned int DEFAULT_FLAGS    = 0x0a;
 
-struct SalesRecord {
-    std::string name_;
-    double price_;
+struct SalesRecord
+{
+    std::string  name_;
+    double       price_;
     unsigned int category_ : 4;
     unsigned int flags_ : 4;
 };
 
-TEST(SalesRecord, Name) {    
+TEST(SalesRecord, Name)
+{
     SalesRecord s;
     EXPECT_EQ("empty", s.name_);
 }
 
-TEST(SalesRecord, Price) {    
+TEST(SalesRecord, Price)
+{
     SalesRecord s;
     EXPECT_DOUBLE_EQ(1.0, s.price_);
 }
 
-TEST(SalesRecord, Category) {    
+TEST(SalesRecord, Category)
+{
     SalesRecord s;
     EXPECT_EQ(DEFAULT_CATEGORY, s.category_);
 }
 
-TEST(SalesRecord, Flags) {    
+TEST(SalesRecord, Flags)
+{
     SalesRecord s;
     EXPECT_EQ(DEFAULT_FLAGS, s.flags_);
 }
 
-int main(int argc, char **argv) {
+int
+main(int argc, char **argv)
+{
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }

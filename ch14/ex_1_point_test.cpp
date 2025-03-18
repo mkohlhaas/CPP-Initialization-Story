@@ -8,22 +8,27 @@
 
 #include <gtest/gtest.h>
 
-struct Point {
+struct Point
+{
     double x;
     double y;
 };
 
-TEST(PointTest, X) {    
+TEST(PointTest, X)
+{
     Point p;
     EXPECT_DOUBLE_EQ(1.0, p.x);
 }
 
-TEST(PointTest, Y) {    
+TEST(PointTest, Y)
+{
     Point p;
     EXPECT_DOUBLE_EQ(2.0, p.y);
 }
 
-int main(int argc, char **argv) {
+int
+main(int argc, char **argv)
+{
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
