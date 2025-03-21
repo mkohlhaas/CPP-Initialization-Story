@@ -10,31 +10,39 @@ struct Value
 struct CtorValue
 {
     CtorValue() = default;
+
     CtorValue(int v) : x{v}
     {
     }
+
     int x;
 };
 
 struct DeletedValue
 {
     DeletedValue() = delete;
+
     DeletedValue(int v) : x{v}
     {
     }
+
     int x;
 };
 
 int
 main()
 {
-    Value v;                 // fine, default constructor available
-    std::println("{}", v.x);
+    Value v1;                 // fine, default constructor available
+    std::println("{}", v1.x); // (random value)
 
-    CtorValue y;             // ok now, default ctor available
-    std::println("{}", y.x); //
+    CtorValue v2;             // ok now, default ctor available
+    std::println("{}", v2.x); // (random value)
 
-    CtorValue z{10};         // using custom ctor
-    // DeletedValue w;       // err, deleted ctor!
-    DeletedValue u{10}; // using custom ctor
+    CtorValue v3{10};         // using custom ctor
+    std::println("{}", v3.x); // 10
+
+    // DeletedValue v4;       // err, deleted ctor!
+
+    DeletedValue v5{10};      // using custom ctor
+    std::println("{}", v5.x); // 10
 }

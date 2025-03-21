@@ -1,5 +1,4 @@
-
-#include <iostream>
+#include <print>
 #include <string>
 
 class Product
@@ -29,6 +28,12 @@ class Product
         return name_;
     }
 
+    int
+    getId() const
+    {
+        return id_;
+    }
+
   private:
     int         id_;
     unsigned    quantity_;
@@ -43,13 +48,13 @@ main()
     try
     {
         Product box{"a box"};
-        std::cout << "product: " << box.getName() << " created... \n";
+        std::println("product: {} created...", box.getName()); // product: a box created...
 
         Product toy{101, 200, "a box"};
-        std::cout << "product: " << toy.getName() << " created... \n";
+        std::println("product: {} created...", toy.getName()); // error
     }
     catch (const std::exception &e)
     {
-        std::cout << "cannot create: " << e.what() << '\n';
+        std::println("cannot create: {}", e.what());           // cannot create: qantity is too large!
     }
 }

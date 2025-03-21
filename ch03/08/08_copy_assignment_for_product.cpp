@@ -1,4 +1,3 @@
-#include <iostream>
 #include <print>
 #include <string>
 
@@ -7,12 +6,12 @@ class Product
   public:
     Product(int id, const std::string &name) : id_{id}, name_{name}
     {
-        std::cout << "Product(): " << id_ << ", " << name_ << '\n';
+        std::println("Product(): ", id_, name_);
     }
 
     Product(const Product &other) : id_{other.id_}, name_{other.name_}
     {
-        std::cout << "Product(copy): " << id_ << ", " << name_ << '\n';
+        std::println("Product(copy): ", id_, name_);
     }
 
     Product &
@@ -25,7 +24,8 @@ class Product
 
         id_   = other.id_;
         name_ = other.name_;
-        std::cout << "operator=(copy): " << id_ << ", " << name_ << '\n';
+
+        std::println("operator=(copy): ", id_, name_);
         return *this;
     }
 
@@ -43,13 +43,13 @@ class Product
 int
 main()
 {
-    Product base{42, "base"};
-    std::println();
-    Product first{base};    // copy ctor called!
-    std::println();
-    Product second = first; // copy ctor called!
-    std::println();
-    Product third{100, "third"};
-    std::println();
-    third = second;         // assignment operator called!
+    Product base{42, "base"};    // Product(): 42, base
+
+    Product first{base};         // Product(copy): 42, base
+
+    Product second = first;      // Product(copy): 42, base
+
+    Product third{100, "third"}; // Product(): 100, third
+
+    third = second;              // operator=(copy): 42, base
 }

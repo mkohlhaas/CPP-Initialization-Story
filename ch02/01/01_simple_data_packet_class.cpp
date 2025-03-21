@@ -1,6 +1,5 @@
-
-#include <iostream>
 #include <numeric>
+#include <print>
 
 size_t
 calcCheckSum(const std::string &s)
@@ -10,6 +9,7 @@ calcCheckSum(const std::string &s)
 
 class DataPacket
 {
+  private:
     std::string data_;
     size_t      checkSum_;
     size_t      serverId_;
@@ -20,17 +20,20 @@ class DataPacket
     {
         return data_;
     }
+
     void
     setData(const std::string &data)
     {
         data_     = data;
         checkSum_ = calcCheckSum(data);
     }
+
     size_t
     getCheckSum() const
     {
         return checkSum_;
     }
+
     size_t
     getServerId() const
     {
@@ -43,5 +46,5 @@ main()
 {
     DataPacket packet;
     packet.setData("Programming World");
-    std::cout << packet.getCheckSum() << '\n';
+    std::println("{}", packet.getCheckSum()); // 1707
 }

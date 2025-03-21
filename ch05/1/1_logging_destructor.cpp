@@ -1,5 +1,4 @@
-
-#include <iostream>
+#include <print>
 #include <string>
 
 class Product
@@ -7,12 +6,12 @@ class Product
   public:
     explicit Product(const char *name, unsigned id) : name_(name), id_(id)
     {
-        std::cout << name << ", id " << id << '\n';
+        std::println("{}, id {}", name, id);
     }
 
     ~Product()
     {
-        std::cout << name_ << " destructor...\n";
+        std::println("{} destructor...", name_);
     }
 
     std::string
@@ -35,9 +34,10 @@ int
 main()
 {
     {
-        Product tvset("TV Set", 123);
-    }
+        Product tvset("TV Set", 123); // TV Set, id 123
+    } // TV Set destructor...
+
     {
-        Product car("Mustang", 999);
-    }
+        Product car("Mustang", 999); // Mustang, id 999
+    } // Mustang destructor...
 }

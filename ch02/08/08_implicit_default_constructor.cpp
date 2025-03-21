@@ -23,7 +23,8 @@ main()
     Value v2{};               // fine, default constructor available
     std::println("{}", v2.x); // 0
 
-    // CtorValue y;          // error! no default ctor available
-    CtorValue z{10};         // using custom ctor
-    std::println("{}", z.x); // 10
+    // CtorValue v3;          // error! no default ctor available
+
+    CtorValue v4{10};         // using custom ctor
+    std::println("{}", v4.x); // 10
 }

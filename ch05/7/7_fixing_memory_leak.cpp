@@ -1,14 +1,13 @@
-
 #include <exception>
 #include <iostream>
 #include <memory>
-#include <string>
 
 constexpr int MIN_ID = 100;
 
 struct Resource
 {
     Resource() = default;
+
     ~Resource()
     {
         std::cout << "~Resource\n";
@@ -41,10 +40,10 @@ main()
 {
     try
     {
-        Product invalid(MIN_ID - 1);
-    }
+        Product invalid(MIN_ID - 1); // Product: id 99
+    } //  ~Resource
     catch (const std::exception &ex)
     {
-        std::cout << "exception: " << ex.what() << '\n';
+        std::cout << "exception: " << ex.what() << '\n'; // exception: bad id...
     }
 }

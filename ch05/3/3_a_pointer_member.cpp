@@ -1,5 +1,4 @@
-
-#include <iostream>
+#include <print>
 #include <string>
 
 class Product
@@ -7,12 +6,12 @@ class Product
   public:
     explicit Product(const char *name, unsigned id) : name_(name), id_(id)
     {
-        std::cout << name << ", id " << id << '\n';
+        std::println("{}, id ", name, id);
     }
 
     ~Product()
     {
-        std::cout << name_ << " destructor...\n";
+        std::println("{} destructor...", name_);
     }
 
     std::string
@@ -36,12 +35,13 @@ class Wrapper
   public:
     Wrapper() : prod_(new Product("internal", 123))
     {
-        std::cout << "Wrapper()\n";
+        std::println("Wrapper()");
     }
+
     ~Wrapper()
     {
         delete prod_;
-        std::cout << "~Wrapper()\n";
+        std::println("~Wrapper()");
     }
 
   private:
@@ -51,5 +51,7 @@ class Wrapper
 int
 main()
 {
-    Wrapper w;
-}
+    Wrapper w; // internal, id 123
+               // Wrapper()
+} // internal destructor...
+  // ~Wrapper()

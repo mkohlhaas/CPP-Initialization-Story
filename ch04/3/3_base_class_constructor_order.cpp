@@ -1,5 +1,4 @@
-
-#include <iostream>
+#include <print>
 #include <string>
 
 class Product
@@ -7,11 +6,17 @@ class Product
   public:
     Product() : id_{0}
     {
-        std::cout << "Product() default\n";
+        std::println("Product() default");
     }
+
+    explicit Product(int id) : id_{id}, name_{}
+    {
+        std::println("Product(): {} {}", id_, name_);
+    }
+
     explicit Product(int id, const std::string &name) : id_{id}, name_{name}
     {
-        std::cout << "Product(): " << id_ << ", " << name_ << '\n';
+        std::println("Product(): {} {}", id_, name_);
     }
 
   protected:
@@ -24,18 +29,22 @@ class ExProduct : public Product
   public:
     ExProduct()
     {
-        std::cout << "ExProduct() default\n";
+        std::println("ExProduct() default");
     }
+
     explicit ExProduct(int id)
     {
         id_ = id;
-        std::cout << "ExProduct(id)\n";
+        std::println("ExProduct(id)");
     }
 };
 
 int
 main()
 {
-    ExProduct p;
-    ExProduct withId{42};
+    ExProduct p;          // Product() default
+                          // ExProduct() default
+
+    ExProduct withId{42}; // Product() default
+                          // ExProduct(id)
 }

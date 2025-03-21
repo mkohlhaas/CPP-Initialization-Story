@@ -1,4 +1,3 @@
-#include <iostream>
 #include <print>
 #include <string>
 #include <vector>
@@ -8,17 +7,17 @@ class Product
   public:
     Product(int id, const std::string &name) : id_{id}, name_{name}
     {
-        std::cout << "Product(): " << id_ << ", " << name_ << '\n';
+        std::println("Product():     {}, {}", id_, name_);
     }
 
     Product(const Product &other) : id_{other.id_}, name_{other.name_}
     {
-        std::cout << "Product(copy): " << id_ << ", " << name_ << '\n';
+        std::println("Product(copy): {}, {}", id_, name_);
     }
 
     Product(Product &&other) noexcept : id_{other.id_}, name_{std::move(other.name_)}
     {
-        std::cout << "Product(move): " << id_ << ", " << name_ << '\n';
+        std::println("Product(move): {}, {}", id_, name_);
     }
 
     std::string
@@ -36,6 +35,7 @@ int
 main()
 {
     std::vector<Product> prods;
+
     prods.emplace_back(101, "car");
     std::println();
     prods.emplace_back(202, "box");

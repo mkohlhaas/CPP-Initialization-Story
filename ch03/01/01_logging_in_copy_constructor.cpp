@@ -1,6 +1,6 @@
-
 #include <array>
 #include <iostream>
+#include <print>
 #include <string>
 
 class Product
@@ -8,12 +8,12 @@ class Product
   public:
     Product(int id, const std::string &name) : id_{id}, name_{name}
     {
-        std::cout << "Product(): " << id_ << ", " << name_ << '\n';
+        std::println("Product(): {}, {}", id_, name_);
     }
 
     Product(const Product &other) : id_{other.id_}, name_{other.name_}
     {
-        std::cout << "Product(copy): " << id_ << ", " << name_ << '\n';
+        std::println("Product(copy): {}, {}", id_, name_);
     }
 
     std::string
@@ -28,9 +28,9 @@ class Product
 };
 
 void
-foo(Product p)
+foo(Product)
 {
-    std::cout << "inside foo()\n";
+    std::println("inside foo()");
 }
 
 Product
@@ -42,20 +42,36 @@ createProduct()
 int
 main()
 {
-    Product base{42, "base product"}; // an initial object
-    std::cout << base.Name() << " created\n";
-    std::cout << "Product other { base };\n";
-    Product other{base};
-    std::cout << "Product another(base);\n";
-    Product another(base);
-    std::cout << "Product oneMore = base;\n";
-    Product oneMore = base;
-    std::cout << "std::array<Product, 2> = { base, other };\n";
-    std::array<Product, 2> arr = {base, other};
+    Product base{42, "base product"};                            // Product(): 42, base product
+    std::println("{} created", base.Name());                     // base product created
+    std::println("Product other {{ base }};");                   // Product other { base };
 
-    std::cout << "calling foo()\n";
-    foo(arr[0]);
+    std::println();
 
-    std::cout << "calling createProduct()\n";
-    Product created = createProduct();
+    Product other{base};                                         // Product(copy): 42, base product
+    std::println("Product another(base);");                      // Product another(base);
+
+    std::println();
+
+    Product another(base);                                       // Product(copy): 42, base product
+    std::println("Product oneMore = base;");                     // Product oneMore = base;
+
+    std::println();
+
+    Product oneMore = base;                                      // Product(copy): 42, base product
+    std::println("std::array<Product, 2> = {{ base, other }};"); // std::array<Product, 2> = { base, other };
+
+    std::println();
+
+    std::array<Product, 2> arr = {base, other};                  // Product(copy): 42, base product
+                                                                 // Product(copy): 42, base product
+    std::println();
+
+    std::println("calling foo()");                               // calling foo()
+    foo(arr[0]);                                                 // Product(copy): 42, base product
+                                                                 // inside foo()
+    std::println();
+
+    std::println("calling createProduct()");                     // calling createProduct()
+    Product created = createProduct();                           // Product(): 101, from createProduct()
 }

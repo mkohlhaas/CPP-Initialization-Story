@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <numeric>
 
@@ -10,6 +9,7 @@ calcCheckSum(const std::string &s)
 
 class DataPacket
 {
+  private:
     std::string data_;
     size_t      checkSum_;
     size_t      serverId_;
@@ -29,12 +29,14 @@ class DataPacket
     {
         return data_;
     }
+
     void
     setData(const std::string &data)
     {
         data_     = data;
         checkSum_ = calcCheckSum(data);
     }
+
     size_t
     getCheckSum() const
     {
@@ -46,6 +48,7 @@ class DataPacket
     {
         serverId_ = id;
     }
+
     size_t
     getServerId() const
     {
@@ -70,6 +73,6 @@ class DebugDataPacket : public DataPacket
 int
 main()
 {
-    DebugDataPacket hello{"hello!", 404};
-    hello.DebugPrint(std::cout);
+    DebugDataPacket hello{"hello!", 404}; //
+    hello.DebugPrint(std::cout);          // hello!, 565
 }

@@ -1,6 +1,5 @@
-
-#include <iostream>
 #include <numeric>
+#include <print>
 
 size_t
 calcCheckSum(const std::string &s)
@@ -42,7 +41,7 @@ int
 main()
 {
     DataPacket packet{};
-    std::cout << "data: " << packet.getData() << '\n';
-    std::cout << "checkSum: " << packet.getCheckSum() << '\n';
-    std::cout << "serverId: " << packet.getServerId() << '\n';
+    std::println("data: {}", packet.getData());         // data:
+    std::println("checkSum: {}", packet.getCheckSum()); // checkSum: 0
+    std::println("serverId: {}", packet.getServerId()); // serverId: 0
 }

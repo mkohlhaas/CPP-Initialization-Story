@@ -1,5 +1,4 @@
-
-#include <iostream>
+#include <print>
 #include <string>
 
 struct CarInfo
@@ -14,8 +13,9 @@ int
 main()
 {
     CarInfo emptyCar{};
-    std::cout << "name: " << emptyCar.name << '\n';
-    std::cout << "year: " << emptyCar.year << '\n';
-    std::cout << "seats: " << emptyCar.seats << '\n';
-    std::cout << "power (hp): " << emptyCar.power << '\n';
+
+    std::println("name: {}", emptyCar.name);     // name:
+    std::println("year: {}", emptyCar.year);     // year: 0
+    std::println("seats: {}", emptyCar.seats);   // seats: 0
+    std::println("power: {}hp", emptyCar.power); // power: 0hp
 }

@@ -60,9 +60,9 @@ class DataPacket
 void
 printInfo(const DataPacket &packet)
 {
-    std::cout << "data: " << packet.getData() << '\n';
-    std::cout << "checkSum: " << packet.getCheckSum() << '\n';
-    std::cout << "serverId: " << packet.getServerId() << '\n';
+    std::println("data:     {}", packet.getData());
+    std::println("checkSum: {}", packet.getCheckSum());
+    std::println("serverId: {}", packet.getServerId());
 }
 
 int
@@ -71,18 +71,34 @@ main()
     DataPacket empty;
     printInfo(empty);
 
+    // data:
+    // checkSum: 0
+    // serverId: 0
+
     std::println();
 
     DataPacket zeroed{};
     printInfo(zeroed);
+
+    // data:
+    // checkSum: 0
+    // serverId: 0
 
     std::println();
 
     DataPacket packet{"Hello World", 101};
     printInfo(packet);
 
+    // data:     Hello World
+    // checkSum: 1052
+    // serverId: 101
+
     std::println();
 
     DataPacket reply{"Hi, how are you?", 404};
     printInfo(reply);
+
+    // data:     Hi, how are you?
+    // checkSum: 1375
+    // serverId: 404
 }

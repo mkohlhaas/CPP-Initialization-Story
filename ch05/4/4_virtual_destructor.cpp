@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <memory>
 #include <string>
@@ -31,6 +30,7 @@ class Product
 struct BoxProduct : public Product
 {
     using Product::Product; // inheriting ctor
+
     ~BoxProduct()
     {
         std::cout << "~BoxProduct...\n";
@@ -46,6 +46,7 @@ struct BoxProduct : public Product
 struct FluidProduct : public Product
 {
     using Product::Product; // inheriting ctor
+
     ~FluidProduct()
     {
         std::cout << "~FluidProduct...\n";
@@ -69,8 +70,11 @@ main()
 {
     using std::make_unique;
     using std::unique_ptr;
-    unique_ptr<Product> box   = make_unique<BoxProduct>("box");
-    unique_ptr<Product> water = make_unique<FluidProduct>("water");
-    CallCalculate(*box.get());
-    CallCalculate(*water.get());
-}
+
+    unique_ptr<Product> box   = make_unique<BoxProduct>("box");     // box
+    unique_ptr<Product> water = make_unique<FluidProduct>("water"); // water
+
+    CallCalculate(*box.get());                                      // calculating: 10
+    CallCalculate(*water.get());                                    // calculating: 100
+} // water destructor...
+  // box destructor...

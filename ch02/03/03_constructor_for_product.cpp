@@ -1,13 +1,18 @@
-
-#include <iostream>
+#include <print>
 #include <string>
 
 class Product
 {
+  private:
+    int         id_;
+    std::string name_;
+
   public:
+    // default constructor
     Product() : id_{-1}, name_{"none"}
     {
-    } // a default constructor
+    }
+
     Product(int id, const std::string &name) : id_{id}, name_{name}
     {
     }
@@ -17,26 +22,23 @@ class Product
     {
         return id_;
     }
+
     std::string
     Name() const
     {
         return name_;
     }
-
-  private:
-    int         id_;
-    std::string name_;
 };
 
 int
 main()
 {
     Product none;
-    std::cout << none.Id() << ", " << none.Name() << '\n';
+    std::println("{}, {}", none.Id(), none.Name());   // -1, none
 
     Product car(10, "super car");
-    std::cout << car.Id() << ", " << car.Name() << '\n';
+    std::println("{}, {}", car.Id(), car.Name());     // 10, super car
 
     Product tvSet{77, "tv set"};
-    std::cout << tvSet.Id() << ", " << tvSet.Name() << '\n';
+    std::println("{}, {}", tvSet.Id(), tvSet.Name()); // 77, tv set
 }

@@ -1,6 +1,5 @@
-
 #include <exception>
-#include <iostream>
+#include <print>
 #include <string>
 
 class Product
@@ -8,7 +7,7 @@ class Product
   public:
     explicit Product(const char *name, unsigned id) : name_(name), id_(id)
     {
-        std::cout << name << ", id " << id << '\n';
+        std::println("{}, id {}", name, id);
         if (id < 100)
         {
             throw std::runtime_error{"bad id..."};
@@ -17,7 +16,7 @@ class Product
 
     ~Product()
     {
-        std::cout << name_ << " destructor...\n";
+        std::println("{} destructor...", name_);
     }
 
     std::string
@@ -41,11 +40,11 @@ main()
 {
     try
     {
-        Product tvset("TV Set", 123);
-        Product car("Mustang", 9);
+        Product tvset("TV Set", 123);             // TV Set, id 123 [1]
+        Product car("Mustang", 9);                // Mustang, id 9 [2]
     }
     catch (const std::exception &ex)
     {
-        std::cout << "exception: " << ex.what() << '\n';
+        std::println("exception: {}", ex.what()); // exception: bad id... [4]
     }
-}
+} // TV Set destructor... [3]

@@ -1,6 +1,5 @@
-
-#include <iostream>
 #include <numeric>
+#include <print>
 
 size_t
 calcCheckSum(const std::string &s)
@@ -22,12 +21,12 @@ class DataPacket
     DataPacket(const std::string &data, size_t serverId)
         : data_{data}, checkSum_{calcCheckSum(data)}, serverId_{serverId}
     {
-        std::cout << "Ctor for \"" << data_ << "\"\n";
+        std::println("Ctor for \"{}\"", data_);
     }
 
     DataPacket(const DataPacket &other) : data_{other.data_}, checkSum_{other.checkSum_}, serverId_{other.serverId_}
     {
-        std::cout << "Copy ctor for \"" << data_ << "\"\n";
+        std::println("Copy ctor for \"{}\"", data_);
     }
 
     DataPacket(DataPacket &&other)
@@ -36,7 +35,7 @@ class DataPacket
           serverId_{other.serverId_}
     {
         other.checkSum_ = 0;             // leave this in a proper state
-        std::cout << "Move ctor for \"" << data_ << "\"\n";
+        std::println("Move ctor for \"{}\"", data_);
     }
 
     DataPacket &
@@ -47,7 +46,7 @@ class DataPacket
             data_     = other.data_;
             checkSum_ = other.checkSum_;
             serverId_ = other.serverId_;
-            std::cout << "Assignment for \"" << data_ << "\"\n";
+            std::println("Assignment for \"{}\"", data_);
         }
         return *this;
     }
@@ -61,7 +60,7 @@ class DataPacket
             checkSum_       = other.checkSum_;
             other.checkSum_ = 0; // leave this in a proper state
             serverId_       = other.serverId_;
-            std::cout << "Move Assignment for \"" << data_ << "\"\n";
+            std::println("Move Assignment for \"{}\"", data_);
         }
         return *this;
     }
@@ -98,20 +97,14 @@ class DataPacket
 int
 main()
 {
-    DataPacket firstMsg{"first msg", 101};
-    DataPacket copyMsg{firstMsg};
-
-    DataPacket secondMsg{"second msg", 202};
-    copyMsg = secondMsg;
-
-    DataPacket movedMsg{std::move(secondMsg)};
-    // now we stole the data, so it should be empty...
-    std::cout << "secondMsg's data after move ctor): \"" << secondMsg.getData()
-              << "\", sum: " << secondMsg.getCheckSum() << '\n';
-
-    movedMsg = std::move(firstMsg);
-
-    // now we stole the name, so it should be empty...
-    std::cout << "firstMsg's data after move ctor): \"" << firstMsg.getData() << "\", sum: " << firstMsg.getCheckSum()
-              << '\n';
+    DataPacket firstMsg{"first msg", 101};     // Ctor for "first msg"
+    DataPacket copyMsg{firstMsg};              // Copy ctor for "first msg"
+    DataPacket secondMsg{"second msg", 202};   // Ctor for "second msg"
+    copyMsg = secondMsg;                       // Assignment for "second msg"
+    DataPacket movedMsg{std::move(secondMsg)}; // Move ctor for "second msg"
+    std::println("secondMsg's data after move ctor: \"{}\", sum: {}", secondMsg.getData(),
+                 secondMsg.getCheckSum());     // secondMsg's data after move ctor: "", sum: 0
+    movedMsg = std::move(firstMsg);            // Move Assignment for "first msg"
+    std::println("firstMsg's data after move assignment: \"{}\", sum: {}", firstMsg.getData(),
+                 firstMsg.getCheckSum());      // firstMsg's data after move assignment: "", sum: 0
 }

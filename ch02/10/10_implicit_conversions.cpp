@@ -1,5 +1,4 @@
-
-#include <iostream>
+#include <print>
 #include <string>
 
 struct Product
@@ -7,9 +6,11 @@ struct Product
     Product() : name{"default product"}, value{}
     {
     }
+
     Product(double v) : name{"basic"}, value{v}
     {
     }
+
     Product(const std::string &n, double v) : name{n}, value{v}
     {
     }
@@ -21,13 +22,13 @@ struct Product
 void
 printProduct(const Product &prod)
 {
-    std::cout << prod.name << ", " << prod.value << '\n';
+    std::println("{}, {}", prod.name, prod.value);
 }
 
 int
 main()
 {
     int someRandomNumber = 100;
-    printProduct(someRandomNumber);
-    printProduct({"a box", 2});
+    printProduct(someRandomNumber); // basic, 100
+    printProduct({"a box", 2});     // a box, 2
 }

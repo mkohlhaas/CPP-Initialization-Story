@@ -1,15 +1,19 @@
-#include <iostream>
+#include <print>
 #include <stdexcept>
 
 constexpr int LOWEST_ID_VALUE = -100;
 
 class Product
 {
+  private:
+    int         id_;
+    std::string name_;
+
   public:
-    Product(int id, const std::string &name) : m_id{id}, m_name{name}
+    Product(int id, const std::string &name) : id_{id}, name_{name}
     {
-        std::cout << "Product: " << m_id << ", " << m_name << '\n';
-        if (m_id < LOWEST_ID_VALUE)
+        std::println("Product: {}, {}", id_, name_);
+        if (id_ < LOWEST_ID_VALUE)
         {
             throw std::invalid_argument{"id cannot be lower than LOWEST_ID_VALUE!"};
         }
@@ -18,12 +22,8 @@ class Product
     std::string
     Name() const
     {
-        return m_name;
+        return name_;
     }
-
-  private:
-    int         m_id;
-    std::string m_name;
 };
 
 int
@@ -31,14 +31,14 @@ main()
 {
     try
     {
-        Product car(10, "car");
-        std::cout << car.Name() << " created\n";
+        Product car(10, "car");                 // Product: 10, car
+        std::println("{} created", car.Name()); // car created
 
-        Product box(-101, "box");
-        std::cout << box.Name() << " created\n";
+        Product box(-101, "box");               // Product: -101, box
+        std::println("{} created", box.Name());
     }
     catch (const std::exception &ex)
     {
-        std::cout << "Error - " << ex.what() << '\n';
+        std::println("Error - {}", ex.what()); // Error - id cannot be lower than LOWEST_ID_VALUE!
     }
 }

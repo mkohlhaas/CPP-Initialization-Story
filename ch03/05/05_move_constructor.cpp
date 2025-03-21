@@ -1,5 +1,4 @@
-
-#include <iostream>
+#include <print>
 #include <string>
 
 class Product
@@ -7,12 +6,12 @@ class Product
   public:
     Product(int id, const std::string &name) : id_{id}, name_{name}
     {
-        std::cout << "Product(): " << id_ << ", " << name_ << '\n';
+        std::println("Product(): " << id_ << ", " << name_ << '\n';
     }
 
     Product(Product &&other) noexcept : id_{other.id_}, name_{std::move(other.name_)}
     {
-        std::cout << "Product(move): " << id_ << ", " << name_ << '\n';
+        std::println("Product(move): " << id_ << ", " << name_ << '\n';
     }
 
     Product
@@ -35,9 +34,10 @@ class Product
 int
 main()
 {
-    Product tvSet{100, "tv set"};
-    std::cout << tvSet.Name() << " created...\n";
-    Product setV2{std::move(tvSet)};
-    std::cout << setV2.Name() << " created...\n";
-    std::cout << "old value: " << tvSet.Name() << '\n';
+    Product tvSet1{100, "tv set"};                // Product(): 100, tv set
+    std::println("{} created...", tvSet1.Name()); // tv set created...
+
+    Product tvSet2{std::move(tvSet1)};            // Product(move): 100, tv set
+    std::println("{} created...", tvSet2.Name()); // tv set created...
+    std::println("old value: {}", tvSet1.Name()); // old value:
 }

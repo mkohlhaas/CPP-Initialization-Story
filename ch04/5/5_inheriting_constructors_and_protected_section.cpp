@@ -1,4 +1,3 @@
-
 struct Base
 {
     int x{};
@@ -25,6 +24,6 @@ struct Derived : public Base
 int
 main()
 {
-    // Derived d{0};  // error: 'Base::Base(int)' is protected
+    Derived d{0};     // error: 'Base::Base(int)' is protected
     Derived d2{0, 1}; // fine
 }

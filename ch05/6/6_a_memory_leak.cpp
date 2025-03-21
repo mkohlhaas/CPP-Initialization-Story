@@ -1,17 +1,15 @@
-
 #include <exception>
-#include <iostream>
-#include <memory>
-#include <string>
+#include <print>
 
 constexpr int MIN_ID = 100;
 
 struct Resource
 {
     Resource() = default;
+
     ~Resource()
     {
-        std::cout << "~Resource\n";
+        std::println("~Resource");
     }
 };
 
@@ -20,7 +18,7 @@ class Product
   public:
     explicit Product(int id) : res_(new Resource())
     {
-        std::cout << "Product: id " << id << '\n';
+        std::println("Product: id {}", id);
         if (id < MIN_ID)
         {
             throw std::runtime_error{"bad id..."};
@@ -30,7 +28,7 @@ class Product
     ~Product()
     {
         delete res_;
-        std::cout << "~Product...\n";
+        std::println("~Product...");
     }
 
   private:
@@ -42,10 +40,10 @@ main()
 {
     try
     {
-        Product invalid(MIN_ID - 1);
+        Product invalid(MIN_ID - 1);              // Product: id 99
     }
     catch (const std::exception &ex)
     {
-        std::cout << "exception: " << ex.what() << '\n';
+        std::println("exception: {}", ex.what()); // exception: bad id...
     }
 }

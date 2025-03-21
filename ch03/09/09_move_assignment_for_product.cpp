@@ -1,4 +1,3 @@
-#include <iostream>
 #include <print>
 #include <string>
 
@@ -7,12 +6,12 @@ class Product
   public:
     Product(int id, const std::string &name) : id_{id}, name_{name}
     {
-        std::cout << "Product(): " << id_ << ", " << name_ << '\n';
+        std::println("Product():                {}, {}", id_, name_);
     }
 
     Product(Product &&other) : id_{other.id_}, name_{std::move(other.name_)}
     {
-        std::cout << "Product(move): " << id_ << ", " << name_ << '\n';
+        std::println("Product(move):            {}, {}", id_, name_);
     }
 
     Product &
@@ -20,7 +19,7 @@ class Product
     {
         id_   = other.id_;
         name_ = std::move(other.name_);
-        std::cout << "operator=(move): " << id_ << ", " << name_ << '\n';
+        std::println("operator=(move):          {}, {}", id_, name_);
         return *this;
     }
 
@@ -38,15 +37,21 @@ class Product
 int
 main()
 {
-    Product base{42, "base"};          // ctor called
+    Product base{42, "base"};                                    // Product():                42, base
+
     std::println();
-    Product first{std::move(base)};    // move ctor called!
-    std::cout << "base.name() after move: " << base.name() << '\n';
+
+    Product first{std::move(base)};                              // Product(move):            42, base
+    std::println("base.name() after move: {}", base.name());     // base.name() after move:
+
     std::println();
-    Product second = std::move(first); // move ctor called!
-    std::cout << "first.name() after move: " << first.name() << '\n';
+
+    Product second = std::move(first);                           // Product(move):            42, base
+    std::println("first.name() after move: {}", first.name());   // first.name() after move:
+
     std::println();
-    Product third{100, "third"};
-    third = std::move(second);         // assignment operator called!
-    std::cout << "second.name() after move: " << second.name() << '\n';
+
+    Product third{100, "third"};                                 // Product():                100, third
+    third = std::move(second);                                   // operator=(move):          42, base
+    std::println("second.name() after move: {}", second.name()); // second.name() after move:
 }
