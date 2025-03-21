@@ -1,4 +1,3 @@
-#include <iostream>
 #include <print>
 
 struct Point
@@ -17,9 +16,18 @@ int
 main()
 {
     // arrays:
-    [[maybe_unused]] int   arr[]{1, 2, 3, 4};
-    [[maybe_unused]] float numbers[] = {0.1f, 1.1f, 2.2f, 3.f, 4.f, 5.};
-    [[maybe_unused]] int   nums[10]{1};
+    int   arr[]{1, 2, 3, 4};
+    float numbers[] = {0.1f, 1.1f, 2.2f, 3.f, 4.f, 5.};
+    int   nums[10]{1};
+
+    // structures:
+    Line longLine{0, 0, 100, 100};
+    Line anotherLine = {100};
+    Line shortLine{{-10, -10}, {10, 10}};
+    // Line shortLine{{}, {}};
+    // Line shortLine{};
+
+    // print the whole stuff
 
     for (auto i : arr)
     {
@@ -41,11 +49,6 @@ main()
     }
 
     std::println();
-
-    // structures:
-    Line longLine{0, 0, 100, 100};
-    Line anotherLine = {100};
-    Line shortLine{{-10, -10}, {10, 10}};
 
     std::println("{}", longLine.p1.x);    // 0
     std::println("{}", longLine.p1.y);    // 0

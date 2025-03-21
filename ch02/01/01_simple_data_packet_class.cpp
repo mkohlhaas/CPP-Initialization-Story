@@ -45,6 +45,10 @@ int
 main()
 {
     DataPacket packet;
+    std::println("{}", packet.getData());     // (empty string)
+    std::println("{}", packet.getCheckSum()); // (random number)
+    std::println("{}", packet.getServerId()); // (random number)
+
     packet.setData("Programming World");
     std::println("{}", packet.getCheckSum()); // 1707
 }

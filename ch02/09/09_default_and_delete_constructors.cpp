@@ -33,16 +33,19 @@ int
 main()
 {
     Value v1;                 // fine, default constructor available
-    std::println("{}", v1.x); // (random value)
+    std::println("{}", v1.x); // (indeterminate value)
 
-    CtorValue v2;             // ok now, default ctor available
-    std::println("{}", v2.x); // (random value)
+    Value v2{};               // fine, default constructor available
+    std::println("{}", v2.x); // 0
 
-    CtorValue v3{10};         // using custom ctor
-    std::println("{}", v3.x); // 10
+    CtorValue v3;             // ok now, default ctor available
+    std::println("{}", v3.x); // (indeterminate value)
 
-    // DeletedValue v4;       // err, deleted ctor!
+    CtorValue v4{10};         // using custom ctor
+    std::println("{}", v4.x); // 10
 
-    DeletedValue v5{10};      // using custom ctor
-    std::println("{}", v5.x); // 10
+    // DeletedValue v5;       // err, deleted ctor!
+
+    DeletedValue v6{10};      // using custom ctor
+    std::println("{}", v6.x); // 10
 }

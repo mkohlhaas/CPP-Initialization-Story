@@ -18,7 +18,7 @@ int
 main()
 {
     Value v1;                 // fine, default constructor available
-    std::println("{}", v1.x); // (random value)
+    std::println("{}", v1.x); // (indeterminate value)
 
     Value v2{};               // fine, default constructor available
     std::println("{}", v2.x); // 0

@@ -40,7 +40,10 @@ class DataPacket
 int
 main()
 {
+    // DataPacket packet{"name", 0, 0};                 // error: no aggregate initialization bc members are private
+
     DataPacket packet{};
+
     std::println("data: {}", packet.getData());         // data:
     std::println("checkSum: {}", packet.getCheckSum()); // checkSum: 0
     std::println("serverId: {}", packet.getServerId()); // serverId: 0

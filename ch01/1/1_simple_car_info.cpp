@@ -9,18 +9,36 @@ struct CarInfo
     double      power;
 };
 
+void
+print_carinfo(const CarInfo &car)
+{
+    std::println("name: {}", car.name);
+    std::println("year: {}", car.year);
+    std::println("seats: {}", car.seats);
+    std::println("power: {}hp", car.power);
+}
+
 int
 main()
 {
     CarInfo firstCar;
+
+    print_carinfo(firstCar);
+    // name:
+    // year: (random value)
+    // seats: (random value)
+    // power: (random value)hp
 
     firstCar.name  = "Renault Megane";
     firstCar.year  = 2002;
     firstCar.seats = 5;
     firstCar.power = 116;
 
-    std::println("name: {}", firstCar.name);     // name: Renault Megane
-    std::println("year: {}", firstCar.year);     // year: 2002
-    std::println("seats: {}", firstCar.seats);   // seats: 5
-    std::println("power: {}hp", firstCar.power); // power: 116hp
+    std::println();
+
+    print_carinfo(firstCar);
+    // name: Renault Megane
+    // year: 2002
+    // seats: 5
+    // power: 116hp
 }
