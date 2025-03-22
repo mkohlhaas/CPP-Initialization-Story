@@ -21,12 +21,12 @@ class DataPacket
     DataPacket(const std::string &data, size_t serverId)
         : data_{data}, checkSum_{calcCheckSum(data)}, serverId_{serverId}
     {
-        std::println("Ctor for \"{}\"", data_);
+        std::println("Ctor      for {}", data_);
     }
 
     DataPacket(const DataPacket &other) : data_{other.data_}, checkSum_{other.checkSum_}, serverId_{other.serverId_}
     {
-        std::println("Copy ctor for \"{}\"", data_);
+        std::println("Copy ctor for {}", data_);
     }
 
     DataPacket(DataPacket &&other)
@@ -35,33 +35,29 @@ class DataPacket
           serverId_{other.serverId_}
     {
         other.checkSum_ = 0;             // leave this in a proper state
-        std::println("Move ctor for \"{}\"", data_);
+        std::println("Move ctor for {}", data_);
     }
 
+    // copy assignment
     DataPacket &
     operator=(const DataPacket &other)
     {
-        if (this != &other)
-        {
-            data_     = other.data_;
-            checkSum_ = other.checkSum_;
-            serverId_ = other.serverId_;
-            std::println("Assignment for \"{}\"", data_);
-        }
+        data_     = other.data_;
+        checkSum_ = other.checkSum_;
+        serverId_ = other.serverId_;
+        std::println("Copy Assignment for {}", data_);
         return *this;
     }
 
+    // move assignment
     DataPacket &
     operator=(DataPacket &&other)
     {
-        if (this != &other)
-        {
-            data_           = std::move(other.data_);
-            checkSum_       = other.checkSum_;
-            other.checkSum_ = 0; // leave this in a proper state
-            serverId_       = other.serverId_;
-            std::println("Move Assignment for \"{}\"", data_);
-        }
+        data_           = std::move(other.data_);
+        checkSum_       = other.checkSum_;
+        other.checkSum_ = 0; // leave this in a proper state
+        serverId_       = other.serverId_;
+        std::println("Move Assignment for \"{}\"", data_);
         return *this;
     }
 
@@ -97,14 +93,14 @@ class DataPacket
 int
 main()
 {
-    DataPacket firstMsg{"first msg", 101};     // Ctor for "first msg"
-    DataPacket copyMsg{firstMsg};              // Copy ctor for "first msg"
-    DataPacket secondMsg{"second msg", 202};   // Ctor for "second msg"
-    copyMsg = secondMsg;                       // Assignment for "second msg"
-    DataPacket movedMsg{std::move(secondMsg)}; // Move ctor for "second msg"
-    std::println("secondMsg's data after move ctor: \"{}\", sum: {}", secondMsg.getData(),
-                 secondMsg.getCheckSum());     // secondMsg's data after move ctor: "", sum: 0
-    movedMsg = std::move(firstMsg);            // Move Assignment for "first msg"
-    std::println("firstMsg's data after move assignment: \"{}\", sum: {}", firstMsg.getData(),
-                 firstMsg.getCheckSum());      // firstMsg's data after move assignment: "", sum: 0
+    DataPacket fst_msg{"fst_msg", 101};      // Ctor      for "first msg"
+    DataPacket copyMsg{fst_msg};             // Copy ctor for "first msg"
+    DataPacket snd_msg{"snd_msg", 202};      // Ctor      for "second msg"
+    copyMsg = snd_msg;                       // Copy Assignment for "second msg"
+    DataPacket movedMsg{std::move(snd_msg)}; // Move ctor for "second msg"
+    std::println("snd_msg: {}, sum: {}", snd_msg.getData(),
+                 snd_msg.getCheckSum());     // secondMsg's data after move ctor: "", sum: 0
+    movedMsg = std::move(fst_msg);           // Move Assignment for "first msg"
+    std::println("fst_msg: {}, sum: {}", fst_msg.getData(),
+                 fst_msg.getCheckSum());     // firstMsg's data after move assignment: "", sum: 0
 }

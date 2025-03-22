@@ -9,11 +9,13 @@ class Product
         std::println("Product():                {}, {}", id_, name_);
     }
 
+    // move constructor
     Product(Product &&other) : id_{other.id_}, name_{std::move(other.name_)}
     {
         std::println("Product(move):            {}, {}", id_, name_);
     }
 
+    // move assignment
     Product &
     operator=(Product &&other)
     {

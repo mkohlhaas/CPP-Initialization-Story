@@ -35,6 +35,5 @@ createProduct()
 int
 main()
 {
-    std::println("calling createProduct()"); // calling createProduct()
-    Product created = createProduct();
+    Product created = createProduct(); // copy constructor not called (copy elision; NRVO)
 }
