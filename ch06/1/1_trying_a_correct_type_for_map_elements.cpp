@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <map>
 
@@ -7,7 +6,7 @@ main()
 {
     std::map<std::string, int> m{{"hello", 1}, {"world", 2}};
 
-    for (const std::pair<std::string, int> &elem : m)
+    for (const std::pair<std::string, int> elem : m)
     {
         std::cout << elem.first << ", " << &elem.first << '\n';
     }
