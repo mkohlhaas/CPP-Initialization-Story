@@ -9,6 +9,7 @@ class Product
         verifyData();
     }
 
+    // delegating constructor
     Product(const std::string &name, int id = 0) : Product{id, 0, name}
     {
     }
