@@ -1,5 +1,3 @@
-
-#include <iostream>
 #include <vector>
 
 struct Point

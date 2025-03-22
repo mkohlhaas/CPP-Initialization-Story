@@ -1,6 +1,3 @@
-
-#include <array>
-
 struct Array
 {
     int data[2];

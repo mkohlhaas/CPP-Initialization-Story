@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <memory>
 #include <vector>
@@ -10,6 +9,8 @@ struct Shape
     {
         std::cout << "rendering shape\n";
     }
+
+    virtual ~Shape() = default;
 };
 
 struct Circle : Shape

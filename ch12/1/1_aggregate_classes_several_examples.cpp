@@ -1,7 +1,5 @@
-
 #include <array>
 #include <iostream>
-#include <numeric>
 
 struct Base
 {

@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <string>
 
@@ -25,6 +24,7 @@ struct SimpleType
     {
         std::cout << "SimpleType()\n";
     }
+
     SimpleType(int x) : a(x)
     {
         std::cout << "SimpleType(int)\n";

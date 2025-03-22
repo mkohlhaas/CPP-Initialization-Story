@@ -1,5 +1,5 @@
-
 #include <cstdio>
+
 class Singleton
 {
   private:

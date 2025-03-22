@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <string>
 
@@ -24,6 +23,7 @@ struct SimpleType
     SimpleType()
     {
     }
+
     explicit SimpleType(std::string s) : b(std::move(s))
     {
     }
