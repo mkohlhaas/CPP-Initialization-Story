@@ -10,7 +10,7 @@ class Product
         std::cout << name << '\n';
     }
 
-    ~Product()
+    virtual ~Product()
     {
         std::cout << name_ << " destructor...\n";
     }
@@ -31,7 +31,7 @@ struct BoxProduct : public Product
 {
     using Product::Product; // inheriting ctor
 
-    ~BoxProduct()
+    ~BoxProduct() override
     {
         std::cout << "~BoxProduct...\n";
     }
@@ -47,7 +47,7 @@ struct FluidProduct : public Product
 {
     using Product::Product; // inheriting ctor
 
-    ~FluidProduct()
+    ~FluidProduct() override
     {
         std::cout << "~FluidProduct...\n";
     }
@@ -78,3 +78,21 @@ main()
     CallCalculate(*water.get());                                    // calculating: 100
 } // water destructor...
   // box destructor...
+
+// With virtual destructor:
+// box
+// water
+// calculating: 10
+// calculating: 100
+// ~FluidProduct...
+// water destructor...
+// ~BoxProduct...
+// box destructor...
+
+// Without virtual destructor:
+// box
+// water
+// calculating: 10
+// calculating: 100
+// water destructor...
+// box destructor...

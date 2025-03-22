@@ -7,6 +7,7 @@ struct Resource
 {
     Resource() = default;
 
+    // not called when Product constructor throws exception
     ~Resource()
     {
         std::println("~Resource");

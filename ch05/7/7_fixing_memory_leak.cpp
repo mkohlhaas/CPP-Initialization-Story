@@ -1,6 +1,6 @@
 #include <exception>
-#include <iostream>
 #include <memory>
+#include <print>
 
 constexpr int MIN_ID = 100;
 
@@ -10,7 +10,7 @@ struct Resource
 
     ~Resource()
     {
-        std::cout << "~Resource\n";
+        std::println("~Resource");
     }
 };
 
@@ -19,7 +19,7 @@ class Product
   public:
     explicit Product(int id) : res_(std::make_unique<Resource>())
     {
-        std::cout << "Product: id " << id << '\n';
+        std::println("Product: id {}", id);
         if (id < MIN_ID)
         {
             throw std::runtime_error{"bad id..."};
@@ -28,7 +28,7 @@ class Product
 
     ~Product()
     {
-        std::cout << "~Product...\n";
+        std::println("~Product...");
     }
 
   private:
@@ -40,10 +40,11 @@ main()
 {
     try
     {
-        Product invalid(MIN_ID - 1); // Product: id 99
-    } //  ~Resource
+        Product invalid(MIN_ID - 1);            // Product: id 99
+                                                // ~Resource (wasn't called before)
+    }
     catch (const std::exception &ex)
     {
-        std::cout << "exception: " << ex.what() << '\n'; // exception: bad id...
+        std::println("exception: ", ex.what()); // exception: bad id...
     }
 }
