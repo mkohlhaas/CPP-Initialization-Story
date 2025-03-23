@@ -14,7 +14,8 @@ template <typename T, typename... Ts>
 void
 typeNames(const char *str)
 {
-    std::cout << str << type_name<T>();
+    std::cout << str;
+    std::cout << type_name<T>();
     ((std::cout << ", " << type_name<Ts>()), ...);
 }
 

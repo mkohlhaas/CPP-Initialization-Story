@@ -10,7 +10,8 @@ main()
         {"New York", 8'622'698},
     };
 
-    for (auto &[city, population] : mapCityPopulation)
+    // structured bindings
+    for (const auto &[city, population] : mapCityPopulation)
     {
         std::cout << city << ": " << population << '\n';
     }
