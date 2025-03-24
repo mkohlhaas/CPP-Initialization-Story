@@ -3,8 +3,9 @@
 #include <string>
 #include <vector>
 
-struct Product
+class Product
 {
+  public:
     Product() = default;
 
     Product(std::string s, double v) : name{std::move(s)}, value{v}
@@ -17,6 +18,11 @@ struct Product
 
 class Package
 {
+  private:
+    std::vector<Product>            prods_;
+    std::map<std::string, unsigned> counts_;
+    double                          totalValue_{};
+
   public:
     Package() = default;
 
@@ -54,23 +60,28 @@ class Package
         }
         std::cout << "total value: " << totalValue_ << '\n';
     }
-
-  private:
-    std::vector<Product>            prods_; // all products
-    std::map<std::string, unsigned> counts_;
-    double                          totalValue_{};
 };
 
 int
 main()
 {
     Package pack;
-    pack.addProduct({"crayons", 3.0});
-    pack.addProduct({"pen", 2.0});
-    pack.addProduct({"bricks", 11.0});
-    pack.addProduct({"bricks", 12.0});
-    pack.addProduct({"pen", 12.0});
-    pack.addProducts({"pencil", 12.0}, Product{"pen", 10});
-    // pack.addProducts({"pencil", 12.0}, 10);
+
+    // clang-format off
+    pack.addProducts(Product{"crayons", 3.0},
+                     Product{"pen", 2.0},
+                     Product{"bricks", 11.0},
+                     Product{"bricks", 12.0},
+                     Product{"pen", 12.0},
+                     Product{"pencil", 12.0},
+                     Product{"pen", 10});
+    // clang-format on
+
     pack.printContents();
 }
+
+// bricks, count: 2
+// crayons, count: 1
+// pen, count: 3
+// pencil, count: 1
+// total value: 62

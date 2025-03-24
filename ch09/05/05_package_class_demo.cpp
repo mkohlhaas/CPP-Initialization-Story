@@ -3,8 +3,12 @@
 #include <string>
 #include <vector>
 
-struct Product
+class Product
 {
+  public:
+    std::string name;
+    double      value;
+
     Product() : name{}, value{}
     {
     }
@@ -12,20 +16,25 @@ struct Product
     Product(const std::string &s, double v) : name{s}, value{v}
     {
     }
-
-    std::string name;
-    double      value;
 };
 
 class Package
 {
+    using map_prod_count = std::map<std::string, unsigned>;
+    using vec_prods      = std::vector<Product>;
+
+  private:
+    vec_prods      prods_;
+    map_prod_count counts_;
+    double         totalValue_;
+
   public:
-    Package() : totalValue_{0.0}
+    Package()
     {
     }
 
     void
-    AddProduct(const Product &p)
+    addProduct(const Product &p)
     {
         ++counts_[p.name];
         prods_.push_back(p);
@@ -33,7 +42,7 @@ class Package
     }
 
     void
-    PrintContents() const
+    printContents() const
     {
         for (auto &[key, val] : counts_)
         {
@@ -41,22 +50,23 @@ class Package
         }
         std::cout << "total value: " << totalValue_ << '\n';
     }
-
-  private:
-    std::vector<Product>            prods_; // all products
-    std::map<std::string, unsigned> counts_;
-    double                          totalValue_;
 };
 
 int
 main()
 {
     Package pack;
-    pack.AddProduct({"crayons", 3.0});
-    pack.AddProduct({"pen", 2.0});
-    pack.AddProduct({"bricks", 11.0});
-    pack.AddProduct({"bricks", 12.0});
-    pack.AddProduct({"pen", 12.0});
-    pack.AddProduct({"pencil", 12.0});
-    pack.PrintContents();
+    pack.addProduct({"crayons", 3.0}); // adding every single product (tedious)
+    pack.addProduct({"pen", 2.0});
+    pack.addProduct({"bricks", 11.0});
+    pack.addProduct({"bricks", 12.0});
+    pack.addProduct({"pen", 12.0});
+    pack.addProduct({"pencil", 12.0});
+    pack.printContents();
 }
+
+// bricks, count: 2
+// crayons, count: 1
+// pen, count: 2
+// pencil, count: 1
+// total value: 52

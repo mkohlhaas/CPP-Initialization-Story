@@ -37,7 +37,7 @@ initFromMoveable(Args &&...args)
 {
     std::vector<std::unique_ptr<T>> vec;
     vec.reserve(sizeof...(Args));
-    (vec.emplace_back(std::forward<Args>(args)), ...);
+    (vec.emplace_back(std::forward<Args>(args)), ...); // fold  with comma operator
     return vec;
 }
 

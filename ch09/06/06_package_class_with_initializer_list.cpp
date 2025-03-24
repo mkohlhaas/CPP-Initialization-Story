@@ -3,29 +3,38 @@
 #include <string>
 #include <vector>
 
-struct Product
+//  For std::initializer_list the compiler deduces the size and creates a C-style array
+//  underneath for its elements, so there are no extra allocations here.
+
+class Product
 {
-    Product() = default;
-
-    Product(std::string s, double v) : name{std::move(s)}, value{v}
-    {
-    }
-
+  public:
     std::string name;
     double      value{};
+
+    Product() = default;
+
+    Product(std::string s, double v) : name{std::move(s)}, value{v} // using move
+    {
+    }
 };
 
 class Package
 {
+    using map_prod_count = std::map<std::string, unsigned>;
+    using vec_prods      = std::vector<Product>;
+
+  private:
+    vec_prods      prods_;
+    map_prod_count counts_;
+    double         totalValue_{};
+
   public:
     Package() = default;
 
     Package(std::initializer_list<Product> items)
     {
-        for (auto &elem : items)
-        {
-            addProduct(elem);
-        }
+        addProducts(items);
     }
 
     void
@@ -37,6 +46,15 @@ class Package
     }
 
     void
+    addProducts(std::initializer_list<Product> items)
+    {
+        for (auto &elem : items)
+        {
+            addProduct(elem);
+        }
+    }
+
+    void
     printContents() const
     {
         for (auto &[key, val] : counts_)
@@ -45,22 +63,24 @@ class Package
         }
         std::cout << "total value: " << totalValue_ << '\n';
     }
-
-  private:
-    std::vector<Product>            prods_; // all products
-    std::map<std::string, unsigned> counts_;
-    double                          totalValue_{};
 };
 
 int
 main()
 {
-    Package pack;
-    pack.addProduct({"crayons", 3.0});
-    pack.addProduct({"pen", 2.0});
-    pack.addProduct({"bricks", 11.0});
-    pack.addProduct({"bricks", 12.0});
-    pack.addProduct({"pen", 12.0});
-    pack.addProduct({"pencil", 12.0});
+    Package pack({
+        {"crayons", 3.0},
+        {"pen", 2.0},
+        {"bricks", 11.0},
+        {"bricks", 12.0},
+        {"pen", 12.0},
+        {"pencil", 12.0},
+    });
     pack.printContents();
 }
+
+// bricks, count: 2
+// crayons, count: 1
+// pen, count: 2
+// pencil, count: 1
+// total value: 52
