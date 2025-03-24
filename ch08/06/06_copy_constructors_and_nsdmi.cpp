@@ -28,19 +28,31 @@ struct SimpleType
     {
     }
 
-    SimpleType(const SimpleType &other)
+    // [1]
+    // copy constructor
+    // SimpleType(const SimpleType &other)
+    // {
+    //     a = other.a;
+    //     b = other.b;
+    //     std::cout << "copy ctor\n";
+    // };
+
+    // [2]
+    // copy constructor
+    SimpleType(const SimpleType &other) : a{other.a}, b{other.b}
     {
         std::cout << "copy ctor\n";
-
-        a = other.a;
-        b = other.b;
     };
+
+    // [3]
+    // copy constructor
+    // SimpleType(const SimpleType &other) = default;
 };
 
 int
 main()
 {
     SimpleType t1;
-    std::cout << "SimpleType t2 = t1:\n";
+    std::cout << std::endl;
     SimpleType t2 = t1;
 }

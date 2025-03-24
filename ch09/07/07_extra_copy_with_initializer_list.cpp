@@ -7,14 +7,17 @@ struct Value
     {
         std::cout << "Value(" << v << ")\n";
     }
+
     Value(const Value &rhs) : v{rhs.v}
     {
         std::cout << "copy Value(" << v << ")\n";
     }
+
     Value(Value &&rhs) : v{rhs.v}
     {
         std::cout << "move Value(" << v << ")\n";
     }
+
     ~Value() noexcept
     {
         std::cout << "~Value(" << v << ")\n";

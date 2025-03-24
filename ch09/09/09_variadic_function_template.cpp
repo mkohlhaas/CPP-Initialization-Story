@@ -6,6 +6,7 @@
 struct Product
 {
     Product() = default;
+
     Product(std::string s, double v) : name{std::move(s)}, value{v}
     {
     }
@@ -18,6 +19,7 @@ class Package
 {
   public:
     Package() = default;
+
     Package(std::initializer_list<Product> items)
     {
         for (auto &elem : items)

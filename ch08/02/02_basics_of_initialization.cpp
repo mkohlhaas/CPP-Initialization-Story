@@ -2,12 +2,12 @@
 
 struct SimpleType
 {
-    int field{0};
+    int field{1};
 };
 
 int
 main()
 {
     SimpleType st;
-    std::cout << "st.field is " << st.field << '\n';
+    std::cout << "st.field = " << st.field << '\n';
 }

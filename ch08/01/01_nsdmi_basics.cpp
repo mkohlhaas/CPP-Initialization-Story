@@ -2,6 +2,8 @@
 #include <numeric>
 #include <string>
 
+// NSDMI = Non-Static Data Member Initialization
+
 size_t
 calcCheckSum(const std::string &s)
 {
@@ -12,8 +14,8 @@ class DataPacket
 {
   private:
     std::string data_;
-    size_t      checkSum_{0};
-    size_t      serverId_{0};
+    size_t      checkSum_{0}; // NSDMI
+    size_t      serverId_{0}; // NSDMI
 
   public:
     DataPacket() = default;

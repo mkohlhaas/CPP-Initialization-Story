@@ -30,20 +30,32 @@ struct SimpleType
 
     SimpleType(const SimpleType &other) = default;
 
-    SimpleType(SimpleType &&other)
+    // [1]
+    // SimpleType(SimpleType &&other)
+    // {
+    //     std::cout << "move ctor\n";
+    //
+    //     a = std::move(other.a);
+    //     b = std::move(other.b);
+    // };
+
+    // [2]
+    SimpleType(SimpleType &&other) noexcept : a{std::move(other.a)}, b{std::move(other.b)}
     {
         std::cout << "move ctor\n";
-
-        a = std::move(other.a);
-        b = std::move(other.b);
     };
 };
 
 int
 main()
 {
-    std::cout << "SimpleType t1:\n";
     SimpleType t1;
-    std::cout << "SimpleType t2 = t1:\n";
-    SimpleType t2 = std::move(t1);
+
+    std::cout << std::endl;
+
+    SimpleType t2{"Hi"};
+
+    std::cout << std::endl;
+
+    SimpleType t3 = std::move(t1);
 }

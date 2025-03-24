@@ -8,6 +8,7 @@ struct Product
     Product() : name{}, value{}
     {
     }
+
     Product(const std::string &s, double v) : name{s}, value{v}
     {
     }
@@ -30,6 +31,7 @@ class Package
         prods_.push_back(p);
         totalValue_ += p.value;
     }
+
     void
     PrintContents() const
     {

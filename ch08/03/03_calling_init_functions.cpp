@@ -34,8 +34,9 @@ struct SimpleType
 int
 main()
 {
-    std::cout << "SimpleType t0\n";
     SimpleType t0;
-    std::cout << "SimpleType t1(10)\n";
+
+    std::cout << std::endl;
+
     SimpleType t1(10);
 }

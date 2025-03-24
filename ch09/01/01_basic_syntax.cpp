@@ -7,13 +7,15 @@
 struct S
 {
     S()
-        : numbers{1, 2, 3, 4}                                          //, nums { 1, 2, 3}
-          ,
-          doubles{0.1, 1.1, 2.1}, ints{100, 101, 102}, moreInts(10, 1) // 10 1's, not 10 and 1
-          ,
-          names(10, "hello")                                           // 10 "hello" strings
-          ,
-          mapping{{"one", 1}, {"two", 2}}
+        : numbers{1, 2, 3, 4},    //
+          doubles{0.1, 1.1, 2.1}, //
+          ints{100, 101, 102},    //
+          moreInts(10, 1),        // 10 1's, not 10 and 1
+          names(10, "hello"),     // 10 "hello" strings
+          mapping{
+              {"one", 1},
+              {"two", 2},
+          }
     {
     }
 
