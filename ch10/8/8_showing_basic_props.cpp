@@ -1,8 +1,28 @@
+#include <ios>
 #include <iostream>
 #include <memory>
 #include <string>
 #include <type_traits>
 #include <vector>
+
+// Ref thingies are not default constructable.
+// Ref thingies are only assignable when using std::reference_wrapper.
+// Unique Pointers can't be copied.
+// Const thingies are not assignable.
+
+template <typename T>
+void
+ShowProps()
+{
+    std::cout << std::boolalpha;
+    std::cout << typeid(T).name() << '\n';
+    std::cout << "default constructible " << std::is_default_constructible_v<T> << '\n';
+    std::cout << "copy constructible    " << std::is_copy_constructible_v<T> << '\n';
+    std::cout << "copy assignable       " << std::is_copy_assignable_v<T> << '\n';
+    std::cout << "move constructible    " << std::is_move_constructible_v<T> << '\n';
+    std::cout << "move assignable       " << std::is_move_assignable_v<T> << '\n';
+    std::cout << std::endl;
+}
 
 class Product
 {
@@ -13,8 +33,8 @@ class Product
     }
 
   private:
-    std::string name_;
-    unsigned    id_{};
+    std::string               name_;
+    [[maybe_unused]] unsigned id_{};
 };
 
 class ProductConst
@@ -33,33 +53,33 @@ class ProductConst
 class ProductRef
 {
   public:
-    ProductRef() = default; // compiles, but will be deleted, as the compiler cannot create it...
+    ProductRef() = delete; // compiles, but will be deleted, as the compiler cannot create it...
     explicit ProductRef(std::string name, unsigned &id) : name_(std::move(name)), idRef_(id)
     {
     }
 
   private:
-    std::string name_;
-    unsigned   &idRef_;
+    std::string                name_;
+    [[maybe_unused]] unsigned &idRef_;
 };
 
 class ProductConstRef
 {
   public:
-    ProductConstRef() = default;
+    ProductConstRef() = delete;
     explicit ProductConstRef(std::string name, const unsigned &id) : name_(std::move(name)), idRef_(id)
     {
     }
 
   private:
-    std::string     name_;
-    const unsigned &idRef_;
+    std::string                      name_;
+    [[maybe_unused]] const unsigned &idRef_;
 };
 
 class ProductRefWrapper
 {
   public:
-    ProductRefWrapper() = default;
+    ProductRefWrapper() = delete;
     explicit ProductRefWrapper(std::string name, unsigned id) : name_(std::move(name)), idRef_(id)
     {
     }
@@ -78,8 +98,8 @@ class ProductPointer
     }
 
   private:
-    std::string name_;
-    unsigned   *pId_{};
+    std::string                name_;
+    [[maybe_unused]] unsigned *pId_{};
 };
 
 class ProductUniquePointer
@@ -109,18 +129,6 @@ class ProductSharedPointer
     std::string               name_;
     std::shared_ptr<unsigned> pId_;
 };
-
-template <typename T>
-void
-ShowProps()
-{
-    std::cout << typeid(T).name() << " props: \n";
-    std::cout << "default constructible " << std::is_default_constructible_v<T> << " | ";
-    std::cout << "copy assignable " << std::is_copy_assignable_v<T> << " | ";
-    std::cout << "move assignable " << std::is_move_assignable_v<T> << '\n';
-    std::cout << "copy constructible " << std::is_copy_constructible_v<T> << " | ";
-    std::cout << "move constructible " << std::is_move_constructible_v<T> << '\n';
-}
 
 int
 main()
