@@ -3,6 +3,7 @@ struct Point
     int x;
     int y;
 };
+
 struct PointExt
 {
     Point pt;
@@ -13,19 +14,31 @@ int
 main()
 {
     // C++20 and parens:
-    Point pt(1, 2);
-    // Point pt = (1, 2); // doesn't work, wrong syntax
-    Point pt1 = {1, 2}; // fine with braces
+    [[maybe_unused]] Point pt1(1, 2);
 
-    // Point pt2 { 1.1, 2.2 }; // narrowing prevented
-    Point pt3(1.1, 2.2);   // narrowing is fine
+    [[maybe_unused]] Point pt2{1, 2};
 
-    PointExt pt4{4, 5, 6}; // brace elision works
-    // PointExt pt5 ( (4, 5), 6); // nesting doesn't work
-    //  PointExt pt5 ( 4, 5, 6);  // brace elision doesn't work
-    PointExt pt5(Point(4, 5), 6); // need to be explicit
+    [[maybe_unused]] Point pt3 = (1, 2);                          // wrong syntax
 
-    double params[](9.81, 3.14, 1.44);
-    // double paramsDeduced[] = (9.81, 3.14, 1.44); // wrong syntax
-    int arrX[10](1, 2, 3, 4); // rest is 0
+    [[maybe_unused]] Point pt4 = {1, 2};
+
+    [[maybe_unused]] Point pt5{1.1, 2.2};                         // narrowing prevented
+
+    [[maybe_unused]] Point pt6(1.1, 2.2);                         // narrowing
+
+    [[maybe_unused]] PointExt pt7{{4, 5}, 6};
+
+    [[maybe_unused]] PointExt pt8{4, 5, 6};                       // brace elision works
+
+    [[maybe_unused]] PointExt pt9((4, 5), 6);                     // nesting doesn't work
+
+    [[maybe_unused]] PointExt pt10(4, 5, 6);                      // brace elision doesn't work
+
+    [[maybe_unused]] PointExt pt11(Point(4, 5), 6);               // need to be explicit
+
+    [[maybe_unused]] double params[](9.81, 3.14, 1.44);           // ✓
+
+    [[maybe_unused]] double paramsDeduced[] = (9.81, 3.14, 1.44); // wrong syntax
+
+    [[maybe_unused]] int arrX[10](1, 2, 3, 4);                    // rest is 0
 }

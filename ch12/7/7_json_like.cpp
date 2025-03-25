@@ -1,23 +1,29 @@
 #include <string>
 #include <vector>
 
+using std::string;
+
 struct Date
 {
     int year;
     int month;
     int day;
 };
+
 struct Team
 {
-    std::string name;
-    std::string where;
+    string name;
+    string where;
 };
+
+using vec_teams = std::vector<Team>;
+
 struct GameSession
 {
-    std::string       game;
-    std::string       localization;
-    std::vector<Team> teams;
-    Date              date;
+    string    game;
+    string    localization;
+    vec_teams teams;
+    Date      date;
 };
 
 int
