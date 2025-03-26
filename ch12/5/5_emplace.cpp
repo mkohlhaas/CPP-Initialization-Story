@@ -10,5 +10,5 @@ int
 main()
 {
     std::vector<Point> points;
-    points.emplace_back(10, 20);
+    points.emplace_back(10, 20); // works only in C++20
 }

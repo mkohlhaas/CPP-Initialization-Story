@@ -13,8 +13,8 @@ struct PointExt
 int
 main()
 {
-    // C++20 and parens:
-    [[maybe_unused]] Point pt1(1, 2);
+
+    [[maybe_unused]] Point pt1(1, 2);                             // C++20 can use parens (direct initialization)
 
     [[maybe_unused]] Point pt2{1, 2};
 

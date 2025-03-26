@@ -1,6 +1,11 @@
 #include <iostream>
 #include <string>
 
+// Designated Initializers
+
+// Designators in the initialization expression must have the same order
+// of data members in a class declaration, unlike the C language.
+
 using std::string;
 
 struct Product
@@ -34,6 +39,10 @@ struct Date
 int
 main()
 {
+    // Date d1{.mode = 10};                       // error, mode is static!
+    // Date d2{.day = 1, .year = 2010};           // error, out of order!
+    // Date d3{2050, .month = 12};                // error, mix!
+
     Product p1{.name_ = "box", .inStock_{true}};  //
     Print(p1);                                    // name: box, in stock: true, price: 0
 
