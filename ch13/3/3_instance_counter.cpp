@@ -9,21 +9,24 @@ class InstanceCounter
     {
         ++counter_;
     }
+
     InstanceCounter(const InstanceCounter &) noexcept
     {
         ++counter_;
     }
+
     InstanceCounter(InstanceCounter &&) noexcept
     {
         ++counter_;
     }
+
     ~InstanceCounter() noexcept
     {
         --counter_;
     }
 
     static size_t
-    GetInstanceCounter()
+    getInstanceCounter()
     {
         return counter_;
     }
@@ -33,6 +36,7 @@ struct Value : InstanceCounter
 {
     int val{0};
 };
+
 struct Wrapper : InstanceCounter
 {
     double val{0.0};
@@ -43,6 +47,7 @@ main()
 {
     Value   v;
     Wrapper w;
-    std::cout << "Values: " << Value::GetInstanceCounter() << '\n';
-    std::cout << "Wrappers: " << Wrapper::GetInstanceCounter() << '\n';
+
+    std::cout << "Values: " << Value::getInstanceCounter() << '\n';     // Values: 2
+    std::cout << "Wrappers: " << Wrapper::getInstanceCounter() << '\n'; // Wrappers: 2
 }

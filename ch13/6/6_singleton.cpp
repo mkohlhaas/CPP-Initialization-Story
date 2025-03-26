@@ -7,6 +7,8 @@ class Singleton
     {
         puts("Singleton()");
     }
+
+    // delete copy
     Singleton(const Singleton &)            = delete;
     Singleton &operator=(const Singleton &) = delete;
 
@@ -23,6 +25,7 @@ class Singleton
     {
         puts("foo()");
     }
+
     void
     func()
     {
@@ -33,7 +36,8 @@ class Singleton
 int
 main()
 {
-    puts("main starts...");
-    Singleton::getInstance().foo();
-    Singleton::getInstance().func();
+    puts("main starts...");          // main starts...
+                                     // Singleton()
+    Singleton::getInstance().foo();  // foo()
+    Singleton::getInstance().func(); // func()
 }

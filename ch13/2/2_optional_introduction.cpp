@@ -1,12 +1,15 @@
 #include <iostream>
 #include <optional>
 
+using std::optional;
+using std::string;
+
 int
 main()
 {
-    std::optional<double>      empty;
-    std::optional<std::string> ostr{"Hello World"};
-    std::optional<int>         oi{10};
+    optional<double> empty;
+    optional<string> ostr{"Hello World"};
+    optional<int>    oi{10};
 
     // has_value()
     if (empty.has_value())
@@ -15,19 +18,19 @@ main()
     }
     else
     {
-        std::cout << "empty is empty\n";
+        std::cout << "empty is empty\n"; // empty is empty
     }
 
     // operator bool
     if (ostr)
     {
-        std::cout << *ostr << '\n';
+        std::cout << *ostr << '\n';     // Hello World
     }
     else
     {
-        std::cout << "ostr is empty\n";
+        std::cout << "ostr is empty\n"; //
     }
 
     // value_or()
-    std::cout << oi.value_or(42) << '\n';
+    std::cout << oi.value_or(42) << '\n'; // 10
 }

@@ -9,9 +9,12 @@ class WattPower
 {
   public:
     WattPower() = default;
+
+    // constructors must be explicit
     explicit WattPower(double p) : power_{p}
     {
     }
+
     explicit WattPower(const HorsePower &h);
 
     double
@@ -28,9 +31,12 @@ class HorsePower
 {
   public:
     HorsePower() = default;
+
+    // constructors must be explicit
     explicit HorsePower(double p) : power_{p}
     {
     }
+
     explicit HorsePower(const WattPower &w);
 
     double
@@ -43,10 +49,12 @@ class HorsePower
     double power_{0.};
 };
 
+// hp to W
 WattPower::WattPower(const HorsePower &h) : power_{h.getValue() * ToWattsRatio}
 {
 }
 
+// W to hp
 HorsePower::HorsePower(const WattPower &w) : power_{w.getValue() / ToWattsRatio}
 {
 }
@@ -82,10 +90,12 @@ printInfo(const CarInfo &c)
 int
 main()
 {
-    CarInfo firstCar{"Megane", 2003, 5, HorsePower{116}};
-    printInfo(firstCar);
+    CarInfo firstCar{"Megane", 2003, 5, HorsePower{116}}; //
+    printInfo(firstCar);                                  // Megane, 2003 year, 5 seats, 116hp
+
     CarInfo superCar{"Ferrari", 2022, 2, HorsePower{300}};
-    printInfo(superCar);
+    printInfo(superCar);                                  // Ferrari, 2022 year, 2 seats, 300hp
+
     superCar.power = HorsePower{WattPower{500000}};
-    printInfo(superCar);
+    printInfo(superCar);                                  // Ferrari, 2022 year, 2 seats, 670.511hp
 }

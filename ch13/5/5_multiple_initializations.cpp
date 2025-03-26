@@ -20,42 +20,48 @@ class InstanceCounter
     {
         ++counter_;
     }
+
     InstanceCounter(const InstanceCounter &) noexcept
     {
         ++counter_;
     }
+
     InstanceCounter(InstanceCounter &&) noexcept
     {
         ++counter_;
     }
+
     ~InstanceCounter() noexcept
     {
         --counter_;
     }
 
     static size_t
-    GetInstanceCounter()
+    getInstanceCounter()
     {
         return counter_;
     }
 };
 
+// CRTP
 class Window : public InstanceCounter<Window>
 {
-    static constexpr unsigned default_width{1028};
-    static constexpr unsigned default_height{768};
-    static constexpr unsigned default_bpp{8};
+    static inline unsigned default_width{1028};
+    static inline unsigned default_height{768};
+    static inline unsigned default_bpp{8};
 
     unsigned    width_{default_width};
     unsigned    height_{default_height};
-    Flags       flags_{.bppMode_{default_bpp}};
+    Flags       flags_{.bppMode_ = default_bpp};
     std::string title_{"Default Window"};
 
   public:
     Window() = default;
+
     explicit Window(std::string title) : title_(std::move(title))
     {
     }
+
     Window(std::string title, unsigned w, unsigned h) : width_(w), height_(h), title_(std::move(title))
     {
     }
@@ -85,13 +91,15 @@ WindowDemo()
     std::vector<Window> windows;
     for (int i = 0; i < windowCount; ++i)
     {
-        const auto r    = distrib(gen);
+        const auto r1   = distrib(gen);
         const auto r2   = distrib(gen);
-        const auto name = std::string{adjs[(r + i) % adjs.size()]} + nouns[r2 % nouns.size()];
-        Window     w{name, sizes[r2 % sizes.size()], sizes[r % sizes.size()]};
-        windows.push_back(w);
-        // or emplace:
-        // windows.emplace_back(name, sizes[r2 % sizes.size()], sizes[r % sizes.size()]);
+        const auto name = std::string{adjs[(r1 + i) % adjs.size()]} + nouns[r2 % nouns.size()];
+
+        windows.emplace_back(name, sizes[r1 % sizes.size()], sizes[r2 % sizes.size()]);
+
+        // or push_back:
+        // Window w{name, sizes[r1 % sizes.size()], sizes[r2 % sizes.size()]};
+        // windows.push_back(w);
     }
 
     for (const auto &w : windows)
@@ -99,7 +107,7 @@ WindowDemo()
         std::cout << w << '\n';
     }
 
-    std::cout << "Created " << Window::GetInstanceCounter() << " Windows\n";
+    std::cout << "Created " << Window::getInstanceCounter() << " Windows\n";
 }
 
 int
@@ -107,8 +115,21 @@ main()
 {
     WindowDemo();
 
-    if (Window::GetInstanceCounter() != 0)
+    if (Window::getInstanceCounter() != 0)
     {
-        std::cout << Window::GetInstanceCounter() << " Windows are still alive!\n";
+        std::cout << Window::getInstanceCounter() << " Windows are still alive!\n";
     }
 }
+
+// sample output:
+// Generating 9 random Windows
+// empty tool: 1920x1920
+// empty app: 3840x800
+// blue tool: 3840x3840
+// regular tool: 768x3840
+// regular app: 800x640
+// super game: 3840x800
+// regular app: 640x768
+// blue app: 640x320
+// super console: 1080x1080
+// Created 9 Windows
